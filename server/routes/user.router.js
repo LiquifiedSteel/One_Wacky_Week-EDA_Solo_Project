@@ -21,13 +21,20 @@ router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
 
-  const queryText = `INSERT INTO "user" (username, password)
-    VALUES ($1, $2) RETURNING id`;
+  const queryText = `INSERT INTO "user" (username, password, answers, user_email)
+    VALUES ($1, $2, $3, $4) RETURNING id;`;
   pool
-    .query(queryText, [username, password])
-    .then(() => res.sendStatus(201))
+    .query(queryText, [username, password, req.body.answers, req.body.email])
+    .then((response) => {
+      pool.query(`INSERT INTO "users_questions" ("user_id", "question_id") VALUES ($1, $2), ($1, $3), ($1, $4);`, [response.rows[0].id, req.body.question1, req.body.question2, req.body.question3])
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.log('User registration failed at user questions: ', err);
+        res.sendStatus(500);
+      })
+    })
     .catch((err) => {
-      console.log('User registration failed: ', err);
+      console.log('User registration failed at username, password, and answers: ', err);
       res.sendStatus(500);
     });
 });
@@ -48,5 +55,19 @@ router.post('/logout', (req, res, next) => {
     res.sendStatus(200);
   });
 });
+
+
+router.put('/profile/:url', (req, res) => {
+  const url = req.params.url;
+
+  const query = `UPDATE "user" SET "image_url" = $1 WHERE "id"=$2;`;
+
+  pool.query(query, [url, req.user.id])
+    .then(() => res.sendStatus(200))
+    .catch((err) => {
+      console.log('Failed to update user profile picture: ', err);
+      res.sendStatus(500);
+    })
+})
 
 module.exports = router;
