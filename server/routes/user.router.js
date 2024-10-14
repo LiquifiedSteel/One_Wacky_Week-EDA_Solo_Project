@@ -78,4 +78,25 @@ router.put('/deleteAccount', rejectUnauthenticated, (req, res) => {
   })
 })
 
+router.delete('/hardDelete', rejectUnauthenticated, (req, res) => {
+  if(req.user.isAdmin) {
+    pool.query(`DELETE FROM "user" WHERE "id"=$1;`, [req.body.id])
+    .then(() => {
+      pool.query(`DELETE FROM "users_questions" WHERE "user_id"=$1;`, [req.body.id])
+      .then(() => res.sendStatus(200))
+      .catch((err) => {
+        console.log('Failed to clear the user\'s questions from the users_questions table: ', err);
+        res.sendStatus(500);
+      })
+    })
+    .catch((err) => {
+      console.log('Failed to delete user: ', err);
+      res.sendStatus(500);
+    })
+  } else {
+    res.sendStatus(403);
+  }
+  
+})
+
 module.exports = router;
