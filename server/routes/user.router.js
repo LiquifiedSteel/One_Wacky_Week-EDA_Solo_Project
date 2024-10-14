@@ -56,8 +56,7 @@ router.post('/logout', (req, res, next) => {
   });
 });
 
-
-router.put('/profile/:url', (req, res) => {
+router.put('/profile/:url', rejectUnauthenticated, (req, res) => {
   const url = req.params.url;
 
   const query = `UPDATE "user" SET "image_url" = $1 WHERE "id"=$2;`;
@@ -68,6 +67,15 @@ router.put('/profile/:url', (req, res) => {
       console.log('Failed to update user profile picture: ', err);
       res.sendStatus(500);
     })
+})
+
+router.put('/deleteAccount', rejectUnauthenticated, (req, res) => {
+  pool.query(`UPDATE "user" SET "flagged" = TRUE WHERE "id"=$1;`, [req.user.id])
+  .then(() => res.sendStatus(200))
+  .catch((err) => {
+    console.log('Failed to "delete" user: ', err);
+    res.sendStatus(500);
+  })
 })
 
 module.exports = router;
