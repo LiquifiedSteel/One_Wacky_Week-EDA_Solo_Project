@@ -56,6 +56,7 @@ router.post('/logout', (req, res, next) => {
   });
 });
 
+// This PUT route is used to update the user's profile picture
 router.put('/profile/:url', rejectUnauthenticated, (req, res) => {
   const url = req.params.url;
 
@@ -69,6 +70,7 @@ router.put('/profile/:url', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// This PUT route flags the logged in account for deletion
 router.put('/deleteAccount', rejectUnauthenticated, (req, res) => {
   pool.query(`UPDATE "user" SET "flagged" = TRUE WHERE "id"=$1;`, [req.user.id])
   .then(() => res.sendStatus(200))
@@ -78,6 +80,7 @@ router.put('/deleteAccount', rejectUnauthenticated, (req, res) => {
   })
 })
 
+// This DELETE request can only be activated by the Admin, it will delete the desired account from the database
 router.delete('/hardDelete', rejectUnauthenticated, (req, res) => {
   if(req.user.isAdmin) {
     pool.query(`DELETE FROM "user" WHERE "id"=$1;`, [req.body.id])
