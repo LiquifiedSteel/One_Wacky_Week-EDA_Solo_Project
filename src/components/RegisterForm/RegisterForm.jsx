@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [question1, setQuestion1] = useState(0);
-  const [question2, setQuestion2] = useState(0);
-  const [question3, setQuestion3] = useState(0);
+  const [question1, setQuestion1] = useState(null);
+  const [question2, setQuestion2] = useState(null);
+  const [question3, setQuestion3] = useState(null);
+
   const [answer1, setAnswer1] = useState('');
   const [answer2, setAnswer2] = useState('');
   const [answer3, setAnswer3] = useState('');
   const errors = useSelector((store) => store.errors);
   const questions = useSelector(store => store.questions);
   const dispatch = useDispatch();
-  console.log("list of questions: ", questions);
+
   useEffect(() => {
     dispatch({type: 'FETCH_QUESTIONS'});
   }, [])
@@ -67,36 +69,28 @@ function RegisterForm() {
         <p>Password Recovery Questions</p>
         <label htmlFor='question1'>
           Question 1:
-          <select name='question1' value={question1} onChange={(event) => setQuestion1(event.target.value)}>
-            <option value={0}></option>
-            <option value={1}>Question 1</option>
-            <option value={2}>Question 2</option>
-            <option value={3}>Question 3</option>
-            <option value={4}>Question 4</option>
+          <select name='question1' value={question1} onChange={(event) => {setQuestion1(event.target.value);}}>
+            <option value={null}></option>
+            {questions.filter((question)=>Number(question2) !== Number(question.id) && Number(question3) !== Number(question.id)).map(question =><option key={question.id} value={question.id}>{question.Questions}</option>)}
+
           </select>
           <input type='text' placeholder='Answer to question 1' required value={answer1} onChange={(event) => setAnswer1(event.target.value)}/>
         </label>
       
         <label htmlFor='question2'>
           Question 2:
-          <select name='question2' value={question2} onChange={(event) => setQuestion2(event.target.value)}>
-            <option value={0}></option>
-            <option value={1}>Question 1</option>
-            <option value={2}>Question 2</option>
-            <option value={3}>Question 3</option>
-            <option value={4}>Question 4</option>
+          <select name='question2' value={question2} onChange={(event) => {setQuestion2(event.target.value);}}>
+            <option value={null}></option>
+            {questions.filter((question)=>Number(question1) !== Number(question.id) && Number(question3) !== Number(question.id)).map(question =><option key={question.id} value={question.id}>{question.Questions}</option>)}
           </select>
           <input type='text' placeholder='Answer to question 2' required value={answer2} onChange={(event) => setAnswer2(event.target.value)}/>
         </label>
 
         <label htmlFor='question3'>
           Question 3:
-          <select name='question3' value={question3} onChange={(event) => setQuestion3(event.target.value)}>
-            <option value={0}></option>
-            <option value={1}>Question 1</option>
-            <option value={2}>Question 2</option>
-            <option value={3}>Question 3</option>
-            <option value={4}>Question 4</option>
+          <select name='question3' value={question3} onChange={(event) => {setQuestion3(event.target.value);}}>
+            <option value={null}></option>
+            {questions.filter((question)=>Number(question1) !== Number(question.id) && Number(question2) !== Number(question.id)).map(question =><option key={question.id} value={question.id}>{question.Questions}</option>)}
           </select>
           <input type='text' placeholder='Answer to question 3' required value={answer3} onChange={(event) => setAnswer3(event.target.value)}/>
         </label>
