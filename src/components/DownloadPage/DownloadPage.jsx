@@ -8,7 +8,23 @@ import React from 'react';
 function DownloadPage() {
   return (
     <div className="container">
-      <p>Info Page</p>
+      <div className="grid">
+        
+        <div className="grid-col grid-col_6">
+          <p>Download instructions will go here</p>
+        </div>
+
+        <div className="grid-col grid-col_6">
+
+          <div>
+            <button>Download for Windows</button>
+          </div>
+          <div>
+            <button>Download for MacOS</button>
+          </div>
+          
+        </div>
+      </div>
     </div>
   );
 }
