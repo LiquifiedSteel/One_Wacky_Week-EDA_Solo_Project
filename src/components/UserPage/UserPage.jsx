@@ -9,7 +9,9 @@ function UserPage() {
   console.log(user);
 
   const flagAccount = () => {
-    dispatch({type: "FLAG_ACCOUNT"});
+    if(window.confirm("Are you sure you want to delete your account? This cannot be undone!")){
+      dispatch({type: "FLAG_ACCOUNT"});
+    }
   }
 
   return (
@@ -19,7 +21,7 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
       <p>Your email is: {user.user_email}</p>
       <LogOutButton className="btn" />
-      <button onClick={flagAccount}>Delete Account</button>
+      {!user.isAdmin && <button onClick={flagAccount}>Delete Account</button>}
     </div>
   );
 }

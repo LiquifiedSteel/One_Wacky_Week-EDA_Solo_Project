@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Nav() {
   const user = useSelector((store) => store.user);
-  const history = useHistory();
 
   return (
     <div className="nav">
@@ -15,6 +13,7 @@ function Nav() {
         <h2 className="nav-title">One Wacky Week</h2>
       </Link>
       <div>
+        {user.isAdmin && <Link className="navLink" to="/admin">Admin</Link>}
         <Link className="navLink" to="/home">
           Home
         </Link>

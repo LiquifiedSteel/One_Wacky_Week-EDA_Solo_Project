@@ -19,8 +19,10 @@ import DownloadPage from '../DownloadPage/DownloadPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AdminPage from '../AdminPage/AdminPage';
 
 import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -94,6 +96,10 @@ function App() {
               // Otherwise, show the registration page
               <RegisterPage />
             }
+          </Route>
+
+          <Route exact path="/admin">
+              <AdminPage />
           </Route>
 
           <Route exact path="/home">
