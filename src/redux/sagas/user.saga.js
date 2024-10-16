@@ -24,8 +24,32 @@ function* fetchUser() {
   }
 }
 
+// worker Saga: will be fired on "FLAG_USER" actions
+function* flagUser() {
+  try {
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+
+    // the config includes credentials which
+    // allow the server session to recognize the user
+    // If a user is logged in, this will flag their account
+    // for deletion and they will no longer have access to it
+    yield axios.put('/api/user/deleteAccount', config);
+
+    // we then logout the user, they will no longer
+    // be able to log in with this account
+    yield put({ type: 'LOGOUT' });
+  } catch (error) {
+    console.log('User put request failed', error);
+  }
+}
+
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('FLAG_ACCOUNT', flagUser);
 }
 
 export default userSaga;
