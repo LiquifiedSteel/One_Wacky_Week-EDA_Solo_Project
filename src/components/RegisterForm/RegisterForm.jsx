@@ -28,7 +28,9 @@ function RegisterForm() {
         payload: {
           username: username,
           password: password,
-          answers: [answer1, answer2, answer3],
+          answer1: answer1,
+          answer2: answer2,
+          answer3: answer3,
           email: email,
           question1: question1,
           question2: question2,

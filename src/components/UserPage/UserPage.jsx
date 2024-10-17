@@ -18,7 +18,6 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <img src={user.image_url} />
-      <p>Your ID is: {user.id}</p>
       <p>Your email is: {user.user_email}</p>
       <LogOutButton className="btn" />
       {!user.isAdmin && <button onClick={flagAccount}>Delete Account</button>}

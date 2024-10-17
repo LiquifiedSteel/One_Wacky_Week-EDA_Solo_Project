@@ -98,9 +98,9 @@ function App() {
             }
           </Route>
 
-          <Route exact path="/admin">
+          <ProtectedRoute exact path="/admin">
               <AdminPage />
-          </Route>
+          </ProtectedRoute>
 
           <Route exact path="/home">
               <LandingPage />

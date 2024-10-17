@@ -14,6 +14,32 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     res.send(req.user);
 });
 
+router.get('/answers', rejectUnauthenticated, (req, res) => {
+  pool.query(`SELECT "user_id", json_agg("question_id")AS "questionsIDs", json_agg("answer")AS "answer" FROM "users_questions" GROUP BY "user_id";`)
+  .then((response) => res.send(response.rows).status(200))
+  .catch((err) => {
+    console.log('Failed to retrieve payments: ', err);
+    res.sendStatus(500);
+  })
+})
+
+router.get('/payments', rejectUnauthenticated, (req, res) => {
+  pool.query(`SELECT * FROM "Payments";`)
+  .then((response) => res.send(response.rows).status(200))
+  .catch((err) => {
+    console.log('Failed to retrieve payments: ', err);
+    res.sendStatus(500);
+  })
+})
+
+router.get('/all', rejectUnauthenticated, (req, res) => {
+  pool.query(`SELECT * FROM "user";`)
+  .then((response) => res.send(response.rows).status(200))
+  .catch((err) => {
+    console.log('Failed to retrieve users: ', err);
+    res.sendStatus(500);
+  })
+})
 
 router.get('/questions', (req, res) => {
     pool.query(`SELECT * FROM "Recovery_Questions";`)
@@ -32,12 +58,12 @@ router.post('/register', (req, res, next) => {
     const username = req.body.username;
     const password = encryptLib.encryptPassword(req.body.password);
 
-    const queryText = `INSERT INTO "user" (username, password, answers, user_email)
-        VALUES ($1, $2, $3, $4) RETURNING id;`;
+    const queryText = `INSERT INTO "user" (username, password, user_email)
+        VALUES ($1, $2, $3) RETURNING id;`;
     pool
-        .query(queryText, [username, password, req.body.answers, req.body.email])
+        .query(queryText, [username, password, req.body.email])
         .then((response) => {
-            pool.query(`INSERT INTO "users_questions" ("user_id", "question_id") VALUES ($1, $2), ($1, $3), ($1, $4);`, [response.rows[0].id, req.body.question1, req.body.question2, req.body.question3])
+            pool.query(`INSERT INTO "users_questions" ("user_id", "question_id", "answer") VALUES ($1, $2, $3), ($1, $4, $5), ($1, $6, $7);`, [response.rows[0].id, req.body.question1, req.body.answer1, req.body.question2, req.body.answer2, req.body.question3, req.body.answer3])
                 .then(() => res.sendStatus(201))
                 .catch((err) => {
                     console.log('User registration failed at user questions: ', err);
@@ -92,11 +118,11 @@ router.put('/deleteAccount', rejectUnauthenticated, (req, res) => {
 })
 
 // This DELETE request can only be activated by the Admin, it will delete the desired account from the database
-router.delete('/hardDelete', rejectUnauthenticated, (req, res) => {
+router.delete('/hardDelete/:id', rejectUnauthenticated, (req, res) => {
   if(req.user.isAdmin) {
-    pool.query(`DELETE FROM "user" WHERE "id"=$1;`, [req.body.id])
+    pool.query(`DELETE FROM "user" WHERE "id"=$1;`, [req.params.id])
     .then(() => {
-      pool.query(`DELETE FROM "users_questions" WHERE "user_id"=$1;`, [req.body.id])
+      pool.query(`DELETE FROM "users_questions" WHERE "user_id"=$1;`, [req.params.id])
       .then(() => res.sendStatus(200))
       .catch((err) => {
         console.log('Failed to clear the user\'s questions from the users_questions table: ', err);

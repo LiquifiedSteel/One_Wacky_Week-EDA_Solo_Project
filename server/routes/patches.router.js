@@ -33,9 +33,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     }
 });
 
-router.delete('/', rejectUnauthenticated, (req, res) => {
+router.delete('/:remove', rejectUnauthenticated, (req, res) => {
     if(req.user.isAdmin) {
-        pool.query(`DELETE FROM "Patches" WHERE "number"=$1;`, [req.body.number])
+        console.log(req.params.remove)
+        pool.query(`DELETE FROM "Patches" WHERE "number"=$1;`, [req.params.remove])
             .then(() => res.sendStatus(200))
             .catch((err) => {
                 console.error("Failed to delete Patch Note: ", err);
