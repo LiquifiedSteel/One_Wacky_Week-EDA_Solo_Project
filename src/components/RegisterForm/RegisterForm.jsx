@@ -77,7 +77,7 @@ function RegisterForm() {
       <div>
         <label htmlFor='email'>
           Email:
-          <input type='text' placeholder='Your Email' required value={email} onChange={(event) => setEmail(event.target.value)} />
+          <input type='email' placeholder='Your Email' required value={email} onChange={(event) => setEmail(event.target.value)} />
         </label>
       </div>
       <div id='recovery'>

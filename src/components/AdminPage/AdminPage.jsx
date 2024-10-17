@@ -3,33 +3,40 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
 function AdminPage() {
-    const users = useSelector(store => store.admin.adminUsers);
-    const payments = useSelector(store => store.admin.adminPayments);
-    const QnA = useSelector(store => store.admin.adminQuestions);
-    const [notes, setNotes] = useState('');
-    const [number, setNumber] = useState('');
-    const [remove, setRemove] = useState('');
-    const [attempt, setAttempt] = useState(false);
+    const users = useSelector(store => store.admin.adminUsers); // grabs all of the users from redux
+    const payments = useSelector(store => store.admin.adminPayments); // grabs all of the payments from redux
+    const QnA = useSelector(store => store.admin.adminQuestions); // grabs all of the question IDs and answers for every user
+    const [notes, setNotes] = useState(''); // holds the notes that are typed in until they are dispatched to add a new patch note
+    const [number, setNumber] = useState(''); // holds the number that is typed in until it is dispatched to add a new patch note
+    const [remove, setRemove] = useState(''); // holds the number that is typed in until it is dispatched to remove the corresponding patch note
+    const [attempt, setAttempt] = useState(false); // is used to make sure the page doesn't try and render before the store is populated, otherwise it will throw errors
+    
     const dispatch = useDispatch();
+    // the useEffect is used to populate the redux store
     useEffect(()=> {
         dispatch({type: 'FETCH_USERS'});
         dispatch({type: 'FETCH_PAYMENTS'});
         dispatch({type: 'FETCH_QUESTIONS'});
-
+        // here we tell the page that it can now feel free to render the DOM
         setAttempt(true);
     }, [])
-
+    
+    // handle submit dispatches to the ADD_PATCH saga which will then add the notes and number to the patches table
     const handleSubmit = () => {
         dispatch({type: 'ADD_PATCH', payload: {notes: notes, number: number}});
         setNotes('');
         setNumber('');
     }
 
+    // handleDelete dispatches to the REMOVE_PATCH saga which will then remove the patch note from
+    // the table that has the same number as what the admin entered
     const handleDelete = () => {
         dispatch({type: 'REMOVE_PATCH', payload: remove});
         setRemove('');
     }
 
+    // deleteUser dispatches to the DELETE_USER saga and will find the user with the
+    // corresponding id and will remove them from the user table
     function deleteUser(id) {
         dispatch({type: 'DELETE_USER', payload: id});
         setNumber('');
@@ -47,7 +54,7 @@ function AdminPage() {
             </div>
             <div className="grid">
                 <div className="grid-col grid-col_6">
-                    <table>
+                    <table> {/* This table is going to hold the information for every user */}
                         <thead>
                             <tr>
                                 <th>Usernames</th>
@@ -58,7 +65,7 @@ function AdminPage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map(user => {
+                            {users.map(user => {if(!user.isAdmin){
                                 return <tr key={user.id}>
                                     <td>{user.username}</td>
                                     <td>{user.user_email}</td>
@@ -72,13 +79,13 @@ function AdminPage() {
                                     {user.flagged ? <td>✅</td> : <td>❎</td>}
                                     <td><button onClick={() => deleteUser(user.id)}>🗑️</button></td>
                                 </tr>
-                            })}
+                            }})}
                         </tbody>
-                    </table>
+                    </table>   {/* End of users table */}
                 </div>
 
                 <div className="grid-col grid-col_6">
-                    <table>
+                    <table>    {/* This table is going to hold the information for every payment made */}
                         <thead>
                             <tr>
                                 <th>Email</th>
@@ -95,7 +102,7 @@ function AdminPage() {
                                 </tr>
                             })}
                         </tbody>
-                    </table>
+                    </table> {/* End of payments table */}
                 </div>
             </div>
         </div>

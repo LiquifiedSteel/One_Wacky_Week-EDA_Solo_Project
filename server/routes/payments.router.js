@@ -6,7 +6,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * This GET request will grab all of the patch notes from the Patches table, will be sent straight to the Home page to be displayed
+ * GET route template
  */
 router.get('/', (req, res) => {
     pool.query(`SELECT * FROM "Patches" ORDER BY "date_posted" DESC;`)
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 });
 
 /**
- * This POST request will add a new patch note to the Patches table, this is sent from the admin saga.
+ * POST route template
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
     if(req.user.isAdmin) {
@@ -33,8 +33,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     }
 });
 
-
-// This DELETE request will delete a patch note from the Patches table, this is sent from the admin saga.
 router.delete('/:remove', rejectUnauthenticated, (req, res) => {
     if(req.user.isAdmin) {
         console.log(req.params.remove)
