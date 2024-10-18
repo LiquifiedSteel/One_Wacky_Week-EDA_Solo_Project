@@ -1,11 +1,22 @@
+import axios from 'axios';
 import React from 'react';
-
-// This is one of our simplest components
-// It doesn't have local state
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is
+import { useSelector } from 'react-redux';
 
 function DownloadPage() {
+  const user = useSelector((store) => store.user);
+  function handlePurchase() {
+    axios({
+      method: 'POST',
+      url: '/api/payments/construct-session',
+      data: user,
+    })
+    .then((response) => {
+      console.log(response.data);
+      window.location.href = response.data.url;
+    })
+    .catch(err => console.error('Failed to create checkout session', err))
+  }
+
   return (
     <div className="container">
       <div className="grid">
@@ -17,7 +28,7 @@ function DownloadPage() {
         <div className="grid-col grid-col_6">
 
           <div>
-            <button>Download for Windows</button>
+            <button onClick={() => handlePurchase()}>Download for Windows</button>
           </div>
           <div>
             <button>Download for MacOS</button>

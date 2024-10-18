@@ -4,47 +4,35 @@ const {
 } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
+const stripe = require('stripe')(process.env.SERVER_SESSION_SECRET);
+const YOUR_DOMAIN = 'http://localhost:5173';
 
-/**
- * GET route template
- */
-router.get('/', (req, res) => {
-    pool.query(`SELECT * FROM "Patches" ORDER BY "date_posted" DESC;`)
-        .then((response) => res.send(response.rows).status(200))
-        .catch((err) => {
-            console.error("Failed to retrieve Patch Notes: ", err);
-            res.sendStatus(500);
-        })
-});
 
-/**
- * POST route template
- */
-router.post('/', rejectUnauthenticated, (req, res) => {
-    if(req.user.isAdmin) {
-        pool.query(`INSERT INTO "Patches" ("notes", "number") VALUES ($1, $2);`, [req.body.notes, req.body.number])
-            .then(() => res.sendStatus(201))
-            .catch((err) => {
-                console.error("Failed to create new Patch Note: ", err);
-                res.sendStatus(500);
-            })
-    } else {
-        res.sendStatus(403);
-    }
-});
+router.post('/construct-session', rejectUnauthenticated, async (req, res) => {
+    const email = req.body.user_email;
+    console.log(email);
+    try {
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [
+            {
+            price: 'price_1Q8lUP1zbnYLR7GyDI9gNAwI',
+            quantity: 1,
+            },
+        ],
+        mode: 'payment',
+        success_url: `${YOUR_DOMAIN}/#/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${YOUR_DOMAIN}/#/cancel`,
+        customer_email: email,
+    });
 
-router.delete('/:remove', rejectUnauthenticated, (req, res) => {
-    if(req.user.isAdmin) {
-        console.log(req.params.remove)
-        pool.query(`DELETE FROM "Patches" WHERE "number"=$1;`, [req.params.remove])
-            .then(() => res.sendStatus(200))
-            .catch((err) => {
-                console.error("Failed to delete Patch Note: ", err);
-                res.sendStatus(500);
-            })
-    } else {
-        res.sendStatus(403);
-    }
+    console.log('Checkout session created:', session);
+    res.send({id: session.id, url: session.url});
+
+    } catch (err) {
+        console.error('Error making checkout session', err);
+        res.sendStatus(500);
+    };
 });
 
 module.exports = router;

@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AdminPage from '../AdminPage/AdminPage';
+import Success from '../success/success';
 
 import './App.css';
 
@@ -61,6 +62,10 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+
+            <ProtectedRoute exact path="/success">
+              <Success />
+            </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
