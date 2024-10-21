@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 function UserPage() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  console.log(user);
 
   const flagAccount = () => {
     if(window.confirm("Are you sure you want to delete your account? This cannot be undone!")){

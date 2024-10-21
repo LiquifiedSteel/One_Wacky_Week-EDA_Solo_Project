@@ -7,6 +7,17 @@ const router = express.Router();
 const stripe = require('stripe')(process.env.SERVER_SESSION_SECRET);
 const YOUR_DOMAIN = 'http://localhost:5173';
 
+router.get('/check-status/:email', rejectUnauthenticated, (req, res) => {
+  const queryText = `SELECT "Payments"."id" FROM "Payments" JOIN "user" ON "Payments"."user_email"="user"."user_email" 
+  WHERE "user"."user_email"=$1;`;
+  pool.query(queryText, [req.params.email])
+    .then((response) => {if(response.rows.length>0){
+      res.status(200).json({ found: true })
+    } else {
+      res.status(200).json({ found: false })
+    }})
+    .catch((err) => res.status(500).json({ success: false, error: err.message }))
+})
 
 router.post('/construct-session', rejectUnauthenticated, async (req, res) => {
     const email = req.body.user_email;

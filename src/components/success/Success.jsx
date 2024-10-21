@@ -9,7 +9,6 @@ function Success() {
     const location = useLocation();
     const sessionID = new URLSearchParams(location.search).get('session_id');
     const history = useHistory();
-    console.log(sessionID);
     useEffect (() => {
         axios({
             method: 'POST',

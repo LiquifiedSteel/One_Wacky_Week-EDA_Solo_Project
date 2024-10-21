@@ -53,8 +53,8 @@ function AdminPage() {
                 <button onClick={handleDelete}>Delete designated patch note</button>
             </div>
             <div className="grid">
-                <div className="grid-col grid-col_6">
-                    <table> {/* This table is going to hold the information for every user */}
+                <div className="grid-col grid-col_6"> {/* This table is going to hold the information for every user */}
+                    <table>
                         <thead>
                             <tr>
                                 <th>Usernames</th>

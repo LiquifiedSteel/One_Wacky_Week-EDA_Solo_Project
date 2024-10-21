@@ -4,17 +4,26 @@ import { useSelector } from 'react-redux';
 
 function DownloadPage() {
   const user = useSelector((store) => store.user);
-  function handlePurchase() {
+  function handleClick() {
     axios({
-      method: 'POST',
-      url: '/api/payments/construct-session',
-      data: user,
+      method: 'GET',
+      url: `/api/payments/check-status/${user.user_email}`,
     })
     .then((response) => {
-      console.log(response.data);
-      window.location.href = response.data.url;
+      if(response.data.found) {
+        alert('Thank you for buying the game, there is nothing to download right now, but the database has it saved that you purchased it. So when the game is released, you will already own it. Just think of it as a pre-order')
+      } else {
+        axios({
+          method: 'POST',
+          url: '/api/payments/construct-session',
+          data: user,
+        })
+        .then((response) => {
+          window.location.href = response.data.url;
+        })
+        .catch(err => console.error('Failed to create checkout session', err))
+      }
     })
-    .catch(err => console.error('Failed to create checkout session', err))
   }
 
   return (
@@ -28,10 +37,10 @@ function DownloadPage() {
         <div className="grid-col grid-col_6">
 
           <div>
-            <button onClick={() => handlePurchase()}>Download for Windows</button>
+            <button onClick={() => handleClick()}>Download for Windows</button>
           </div>
           <div>
-            <button>Download for MacOS</button>
+            <button onClick={() => handleClick()}>Download for MacOS</button>
           </div>
           
         </div>

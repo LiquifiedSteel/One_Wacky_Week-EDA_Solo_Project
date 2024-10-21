@@ -11,11 +11,9 @@ function PatchNotes() {
         .catch(err => console.error("Failed to collect patch notes: ", err))
     }, [])
 
-    console.log(patches);
-
     return(
         <div>
-            {patches.map(patch => <p><strong>{patch.number}:</strong> {patch.notes}</p>)}
+            {patches.map(patch => <p key={patch.id}><strong>{patch.number}:</strong> {patch.notes}</p>)}
         </div>
     )
 }
