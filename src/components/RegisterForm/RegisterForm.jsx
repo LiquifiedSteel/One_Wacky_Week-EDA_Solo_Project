@@ -23,26 +23,34 @@ function RegisterForm() {
   const registerUser = (event) => {
     event.preventDefault();
     let toggle = false;
-    let track = '';
+    let trackProvider = '';
+    let trackTLD = '';
     for(let i=0; i<=email.length-1; i++) {
       if(email[i] === '@') {
-        toggle = true;
+        toggle = 'Provider';
       }
       if(toggle) {
         if (email[i] === '.') {
-          toggle = false;
+          toggle = 'TLD';
         }
-        if (toggle) {
-          track += email[i];
+        if (toggle === 'Provider') {
+          trackProvider += email[i];
         }
       }
+      if(toggle === 'TLD') {
+        trackTLD += email[i];
+      }
     }
-    console.log(track);
-    if( track === '@gmail' || track === '@yahoo' || track === '@outlook' || track === '@hotmail' || track === '@aol' || 
-      track === '@icloud' || track === '@protonmail' || track === '@zoho' || track === '@mail' || track === '@me' || 
-      track === '@fastmail' || track === '@gmx' || track === '@yandex' || track === '@msn' || track === '@live' || 
-      track === '@qq' || track === '@rambler' || track === '@rediffmail' || track === '@t-online' || track === '@163' || 
-      track === '@tutanota' || track === '@sendgrid' || track === '@domain' ) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(re.test(email) && (trackProvider === '@gmail' || trackProvider === '@yahoo' || trackProvider === '@outlook' || trackProvider === '@hotmail' || trackProvider === '@aol' ||
+      trackProvider === '@icloud' || trackProvider === '@protonmail' || trackProvider === '@zoho' || trackProvider === '@mail' || trackProvider === '@me' ||
+      trackProvider === '@fastmail' || trackProvider === '@gmx' || trackProvider === '@yandex' || trackProvider === '@msn' || trackProvider === '@live' ||
+      trackProvider === '@qq' || trackProvider === '@rambler' || trackProvider === '@rediffmail' || trackProvider === '@t-online' || trackProvider === '@163' ||
+      trackProvider === '@tutanota' || trackProvider === '@sendgrid' || trackProvider === '@domain') && (trackTLD === '.com' || 
+      trackTLD === '.org' || trackTLD === '.net' || trackTLD === '.info' || trackTLD === '.biz' || trackTLD === '.edu' || 
+      trackTLD === '.gov' || trackTLD === '.mil' || trackTLD === '.io' || trackTLD === '.co' || trackTLD === '.me' || 
+      trackTLD === '.tv' || trackTLD === '.us' || trackTLD === '.ca' || trackTLD === '.uk' || trackTLD === '.au' || 
+      trackTLD === '.de' || trackTLD === '.jp' || trackTLD === '.fr' || trackTLD === '.in')) {
       if(question1 && question2 && question3) {
         dispatch({
           type: 'REGISTER',
