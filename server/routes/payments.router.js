@@ -75,6 +75,10 @@ router.post('/verify', async (req, res) => {
           const userResult = await pool.query(userQuery, [customer_email]);
           if (userResult.rows.length > 0) {
             const userId = userResult.rows[0].id;
+            const query = `UPDATE "user" SET "purchased"=TRUE WHERE "id"=$1;`;
+
+            await pool.query(query, [userId]);
+
             const queryText = `INSERT INTO "Payments" (user_email, amount) VALUES ($1, $2) RETURNING id;`;
             // Set status as true for completed payments
             const paymentResult = await pool.query(queryText, [
