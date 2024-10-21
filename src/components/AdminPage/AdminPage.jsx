@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
+import axios from "axios";
 
 function AdminPage() {
     const users = useSelector(store => store.admin.adminUsers); // grabs all of the users from redux
@@ -10,13 +11,19 @@ function AdminPage() {
     const [number, setNumber] = useState(''); // holds the number that is typed in until it is dispatched to add a new patch note
     const [remove, setRemove] = useState(''); // holds the number that is typed in until it is dispatched to remove the corresponding patch note
     const [attempt, setAttempt] = useState(false); // is used to make sure the page doesn't try and render before the store is populated, otherwise it will throw errors
-    
+    const [patches, setPatches] = useState([]);
+
     const dispatch = useDispatch();
     // the useEffect is used to populate the redux store
     useEffect(()=> {
         dispatch({type: 'FETCH_USERS'});
         dispatch({type: 'FETCH_PAYMENTS'});
         dispatch({type: 'FETCH_QUESTIONS'});
+        axios({
+            method: 'GET',
+            url: '/api/patch'
+        }).then(response => setPatches(response.data))
+        .catch(err => console.error("Failed to collect patch notes: ", err));
         // here we tell the page that it can now feel free to render the DOM
         setAttempt(true);
     }, [])
@@ -143,6 +150,23 @@ function AdminPage() {
                         <input value={remove} onChange={(event) => setRemove(event.target.value)} placeholder="Input for removing an uneeded patch note" />
                         <button onClick={handleDelete}>Delete designated patch note</button>
                     </div>
+                    <h2>Patch Notes</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Patch #</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {patches.map(patch => {
+                                return <tr key={patch.id}>
+                                    <td>{patch.number}</td>
+                                    <td>{patch.notes}</td>
+                                </tr>
+                            })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
