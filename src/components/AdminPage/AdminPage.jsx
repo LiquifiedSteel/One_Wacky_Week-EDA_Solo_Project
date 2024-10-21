@@ -45,15 +45,9 @@ function AdminPage() {
     return !attempt ? null :(
         <div id="admin">
             <h2>Admin</h2>
-            <input value={number} onChange={(event) => setNumber(event.target.value)} placeholder="Input for new Patch note number" />
-            <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="input for patch note" />
-            <button onClick={handleSubmit}>Submit new Patch Note</button>
-            <div>
-                <input value={remove} onChange={(event) => setRemove(event.target.value)} placeholder="Input for removing an uneeded patch note" />
-                <button onClick={handleDelete}>Delete designated patch note</button>
-            </div>
             <div className="grid">
                 <div className="grid-col grid-col_6"> {/* This table is going to hold the information for every user */}
+                    <h3>Accounts Table</h3>
                     <table>
                         <thead>
                             <tr>
@@ -62,10 +56,12 @@ function AdminPage() {
                                 <th>Password Recovery Questions</th>
                                 <th>Flagged for deletion</th>
                                 <th>Delete User</th>
+                                <th>Date Paid (if purchased game)</th>
+                                <th>Amount</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map(user => {if(!user.isAdmin){
+                            {users.filter(((user)=>user.purchased === true && user.flagged === false)).map(user => {if(!user.isAdmin){
                                 return <tr key={user.id}>
                                     <td>{user.username}</td>
                                     <td>{user.user_email}</td>
@@ -76,8 +72,63 @@ function AdminPage() {
                                             <li>{qa.questionsIDs[2]}: {qa.answer[2]}</li>
                                         </ul>
                                     }})}</td>
-                                    {user.flagged ? <td>✅</td> : <td>❎</td>}
-                                    <td><button onClick={() => deleteUser(user.id)}>🗑️</button></td>
+                                    {user.flagged ? <td className="delete">X</td> : <td className="doNot">❎</td>}
+                                    <td>{!user.purchased && <button onClick={() => deleteUser(user.id)}>🗑️</button>}</td>
+                                    {payments.map(payment => {if (payment.user_email === user.user_email) return <td>{moment(payment.date_purchased).format('MMMM Do YYYY')}</td>})}
+                                    {payments.map(payment => {if (payment.user_email === user.user_email) return <td>{payment.amount}</td>})}
+                                </tr>
+                            }})}
+
+
+                            {users.filter(((user)=>user.purchased === true && user.flagged === true)).map(user => {if(!user.isAdmin){
+                                return <tr key={user.id}>
+                                    <td>{user.username}</td>
+                                    <td>{user.user_email}</td>
+                                    <td>{QnA.map(qa => {if(qa.user_id === user.id && attempt){
+                                        return <ul>
+                                            <li>{qa.questionsIDs[0]}: {qa.answer[0]}</li>
+                                            <li>{qa.questionsIDs[1]}: {qa.answer[1]}</li>
+                                            <li>{qa.questionsIDs[2]}: {qa.answer[2]}</li>
+                                        </ul>
+                                    }})}</td>
+                                    {user.flagged ? <td className="delete">X</td> : <td className="doNot">❎</td>}
+                                    <td>{!user.purchased && <button onClick={() => deleteUser(user.id)}>🗑️</button>}</td>
+                                    {payments.map(payment => {if (payment.user_email === user.user_email) return <td>{moment(payment.date_purchased).format('MMMM Do YYYY')}</td>})}
+                                    {payments.map(payment => {if (payment.user_email === user.user_email) return <td>{payment.amount}</td>})}
+                                </tr>
+                            }})}
+
+
+                            {users.filter(((user)=>user.purchased === false && user.flagged === false)).map(user => {if(!user.isAdmin){
+                                return <tr key={user.id}>
+                                    <td>{user.username}</td>
+                                    <td>{user.user_email}</td>
+                                    <td>{QnA.map(qa => {if(qa.user_id === user.id && attempt){
+                                        return <ul>
+                                            <li>{qa.questionsIDs[0]}: {qa.answer[0]}</li>
+                                            <li>{qa.questionsIDs[1]}: {qa.answer[1]}</li>
+                                            <li>{qa.questionsIDs[2]}: {qa.answer[2]}</li>
+                                        </ul>
+                                    }})}</td>
+                                    {user.flagged ? <td className="delete">X</td> : <td className="doNot">❎</td>}
+                                    <td>{!user.purchased && <button onClick={() => deleteUser(user.id)}>🗑️</button>}</td>
+                                </tr>
+                            }})}
+
+
+                            {users.filter(((user)=>user.purchased === false && user.flagged === true)).map(user => {if(!user.isAdmin){
+                                return <tr key={user.id}>
+                                    <td>{user.username}</td>
+                                    <td>{user.user_email}</td>
+                                    <td>{QnA.map(qa => {if(qa.user_id === user.id && attempt){
+                                        return <ul>
+                                            <li>{qa.questionsIDs[0]}: {qa.answer[0]}</li>
+                                            <li>{qa.questionsIDs[1]}: {qa.answer[1]}</li>
+                                            <li>{qa.questionsIDs[2]}: {qa.answer[2]}</li>
+                                        </ul>
+                                    }})}</td>
+                                    {user.flagged ? <td className="delete">X</td> : <td className="doNot">❎</td>}
+                                    <td>{!user.purchased && <button onClick={() => deleteUser(user.id)}>🗑️</button>}</td>
                                 </tr>
                             }})}
                         </tbody>
@@ -85,24 +136,13 @@ function AdminPage() {
                 </div>
 
                 <div className="grid-col grid-col_6">
-                    <table>    {/* This table is going to hold the information for every payment made */}
-                        <thead>
-                            <tr>
-                                <th>Email</th>
-                                <th>Date Purchased</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {payments.map(payment => {
-                                return <tr key={payment.id}>
-                                    <td>{payment.user_email}</td>
-                                    <td>{moment(payment.date_purchased).format('MMMM Do YYYY')}</td>
-                                    <td>{payment.amount}</td>
-                                </tr>
-                            })}
-                        </tbody>
-                    </table> {/* End of payments table */}
+                    <input value={number} onChange={(event) => setNumber(event.target.value)} placeholder="Input for new Patch note number" />
+                    <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="input for patch note" />
+                    <button onClick={handleSubmit}>Submit new Patch Note</button>
+                    <div>
+                        <input value={remove} onChange={(event) => setRemove(event.target.value)} placeholder="Input for removing an uneeded patch note" />
+                        <button onClick={handleDelete}>Delete designated patch note</button>
+                    </div>
                 </div>
             </div>
         </div>
