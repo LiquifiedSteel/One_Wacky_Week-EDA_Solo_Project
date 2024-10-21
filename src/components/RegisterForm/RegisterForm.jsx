@@ -22,23 +22,47 @@ function RegisterForm() {
 
   const registerUser = (event) => {
     event.preventDefault();
-    if(question1 && question2 && question3) {
-      dispatch({
-        type: 'REGISTER',
-        payload: {
-          username: username,
-          password: password,
-          answer1: answer1,
-          answer2: answer2,
-          answer3: answer3,
-          email: email,
-          question1: question1,
-          question2: question2,
-          question3: question3,
-        },
-      });
+    let toggle = false;
+    let track = '';
+    for(let i=0; i<=email.length-1; i++) {
+      if(email[i] === '@') {
+        toggle = true;
+      }
+      if(toggle) {
+        if (email[i] === '.') {
+          toggle = false;
+        }
+        if (toggle) {
+          track += email[i];
+        }
+      }
+    }
+    console.log(track);
+    if( track === '@gmail' || track === '@yahoo' || track === '@outlook' || track === '@hotmail' || track === '@aol' || 
+      track === '@icloud' || track === '@protonmail' || track === '@zoho' || track === '@mail' || track === '@me' || 
+      track === '@fastmail' || track === '@gmx' || track === '@yandex' || track === '@msn' || track === '@live' || 
+      track === '@qq' || track === '@rambler' || track === '@rediffmail' || track === '@t-online' || track === '@163' || 
+      track === '@tutanota' || track === '@sendgrid' || track === '@domain' ) {
+      if(question1 && question2 && question3) {
+        dispatch({
+          type: 'REGISTER',
+          payload: {
+            username: username,
+            password: password,
+            answer1: answer1,
+            answer2: answer2,
+            answer3: answer3,
+            email: email,
+            question1: question1,
+            question2: question2,
+            question3: question3,
+          },
+        });
+      } else {
+        alert("You must pick one option for each of the Question Dropdown fields, these will be saved for password recovery later.");
+      }
     } else {
-      alert("You must pick one option for each of the Question Dropdown fields, these will be saved for password recovery later.");
+      alert('that is an invalid email');
     }
   }; // end registerUser
 
