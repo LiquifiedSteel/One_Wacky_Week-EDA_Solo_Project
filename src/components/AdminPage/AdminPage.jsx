@@ -9,7 +9,6 @@ function AdminPage() {
     const QnA = useSelector(store => store.admin.adminQuestions); // grabs all of the question IDs and answers for every user
     const [notes, setNotes] = useState(''); // holds the notes that are typed in until they are dispatched to add a new patch note
     const [number, setNumber] = useState(''); // holds the number that is typed in until it is dispatched to add a new patch note
-    const [remove, setRemove] = useState(''); // holds the number that is typed in until it is dispatched to remove the corresponding patch note
     const [attempt, setAttempt] = useState(false); // is used to make sure the page doesn't try and render before the store is populated, otherwise it will throw errors
     const [patches, setPatches] = useState([]);
 
@@ -33,13 +32,23 @@ function AdminPage() {
         dispatch({type: 'ADD_PATCH', payload: {notes: notes, number: number}});
         setNotes('');
         setNumber('');
+        axios({
+            method: 'GET',
+            url: '/api/patch'
+        }).then(response => setPatches(response.data))
+        .catch(err => console.error("Failed to collect patch notes: ", err));
     }
 
     // handleDelete dispatches to the REMOVE_PATCH saga which will then remove the patch note from
     // the table that has the same number as what the admin entered
-    const handleDelete = () => {
-        dispatch({type: 'REMOVE_PATCH', payload: remove});
-        setRemove('');
+    function handleDelete(patch) {
+        console.log(patch);
+        dispatch({type: 'REMOVE_PATCH', payload: patch.number});
+        axios({
+            method: 'GET',
+            url: '/api/patch'
+        }).then(response => setPatches(response.data))
+        .catch(err => console.error("Failed to collect patch notes: ", err));
     }
 
     // deleteUser dispatches to the DELETE_USER saga and will find the user with the
@@ -146,16 +155,14 @@ function AdminPage() {
                     <input value={number} onChange={(event) => setNumber(event.target.value)} placeholder="Input for new Patch note number" />
                     <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="input for patch note" />
                     <button onClick={handleSubmit}>Submit new Patch Note</button>
-                    <div>
-                        <input value={remove} onChange={(event) => setRemove(event.target.value)} placeholder="Input for removing an uneeded patch note" />
-                        <button onClick={handleDelete}>Delete designated patch note</button>
-                    </div>
+                    
                     <h2>Patch Notes</h2>
                     <table>
                         <thead>
                             <tr>
                                 <th>Patch #</th>
                                 <th>Notes</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -163,6 +170,7 @@ function AdminPage() {
                                 return <tr key={patch.id}>
                                     <td>{patch.number}</td>
                                     <td>{patch.notes}</td>
+                                    <td><button onClick={() => handleDelete(patch)}>🗑️</button></td>
                                 </tr>
                             })}
                         </tbody>
