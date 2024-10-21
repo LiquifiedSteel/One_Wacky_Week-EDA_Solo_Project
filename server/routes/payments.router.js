@@ -47,7 +47,7 @@ router.post('/construct-session', rejectUnauthenticated, async (req, res) => {
 });
 
 
-router.post('/verify', async (req, res) => {
+router.post('/verify', rejectUnauthenticated, async (req, res) => {
     const user = req.body.user;
     const sessionId = req.body.sessionID;
     console.log(user);

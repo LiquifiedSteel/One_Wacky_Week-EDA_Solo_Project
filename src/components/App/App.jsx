@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AdminPage from '../AdminPage/AdminPage';
 import Success from '../success/success';
+import AdminProtectedRoute from '../AdminProtectedRoute/AdminProtectedRoute';
 
 import './App.css';
 
@@ -103,9 +104,9 @@ function App() {
             }
           </Route>
 
-          <ProtectedRoute exact path="/admin">
+          <AdminProtectedRoute exact path="/admin">
               <AdminPage />
-          </ProtectedRoute>
+          </AdminProtectedRoute>
 
           <Route exact path="/home">
               <LandingPage />
