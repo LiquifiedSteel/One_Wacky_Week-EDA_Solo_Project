@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 function DownloadPage() {
   const user = useSelector((store) => store.user);
+  console.log(user);
 
   function handleClick() {
     if(user.purchased) {
@@ -35,7 +36,8 @@ function DownloadPage() {
             <button onClick={() => handleClick()}>{user.purchased ? "Download for Windows" : "Purchase One Wacky Week"}</button>
           </div>
           <div>
-            {user.purchased ? <button onClick={() => handleClick()}>Download for MacOS</button> : <></>}
+            {user.purchased && <button onClick={() => handleClick()}>Download for MacOS</button>}
+
           </div>
           
         </div>
