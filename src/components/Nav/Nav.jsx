@@ -19,7 +19,7 @@ function Navi() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className='d-lg-none' />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto navLinks">
-              {user.isAdmin && <Link className="navLink" href="/admin">Admin</Link>}
+              {user.isAdmin && <Link className="navLink" to="/admin">Admin</Link>}
               <Link className="navLink" to="/home">Home</Link>
               <Link className="navLink" to="/about">About</Link>
                       

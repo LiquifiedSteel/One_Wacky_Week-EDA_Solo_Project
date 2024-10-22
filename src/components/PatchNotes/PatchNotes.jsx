@@ -15,9 +15,9 @@ function PatchNotes() {
 
     return(
         <>
-            <h3>PATCH NOTES</h3>
+            <h3 className="patch">PATCH NOTES</h3>
             <div className="patches">
-                {patches.map(patch => <p key={patch.id}><strong>{patch.number}:</strong> {patch.notes}</p>)}
+                {patches.map(patch => <p key={patch.id} className="patch"><strong>{patch.number}:</strong> {patch.notes}</p>)}
             </div>
         </>
     )
