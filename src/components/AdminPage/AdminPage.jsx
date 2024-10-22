@@ -153,10 +153,10 @@ function AdminPage() {
 
                 <div className="grid-col grid-col_6">
                     <input value={number} onChange={(event) => setNumber(event.target.value)} placeholder="Input for new Patch note number" />
-                    <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="input for patch note" />
                     <button onClick={handleSubmit}>Submit new Patch Note</button>
+                    <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="input for patch note" />
                     
-                    <h2>Patch Notes</h2>
+                    <h3>Patch Notes</h3>
                     <table>
                         <thead>
                             <tr>

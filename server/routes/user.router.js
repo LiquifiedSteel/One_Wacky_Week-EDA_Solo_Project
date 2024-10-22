@@ -94,12 +94,12 @@ router.post('/logout', (req, res, next) => {
 });
 
 // This PUT route is used to update the user's profile picture
-router.put('/profile/:url', rejectUnauthenticated, (req, res) => {
-  const url = req.params.url;
-
+router.post('/profile/:user', rejectUnauthenticated, (req, res) => {
+  const url = req.body.url;
+  console.log(url, req.params.user);
   const query = `UPDATE "user" SET "image_url" = $1 WHERE "id"=$2;`;
 
-  pool.query(query, [url, req.user.id])
+  pool.query(query, [url, req.params.user])
     .then(() => res.sendStatus(200))
     .catch((err) => {
       console.log('Failed to update user profile picture: ', err);
