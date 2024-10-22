@@ -7,6 +7,7 @@ const router = express.Router();
 const stripe = require('stripe')(process.env.SERVER_SESSION_SECRET);
 const YOUR_DOMAIN = 'http://localhost:5173';
 
+// Here we check if the current user has puchased the game
 router.get('/check-status/:email', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT "Payments"."id" FROM "Payments" JOIN "user" ON "Payments"."user_email"="user"."user_email" 
   WHERE "user"."user_email"=$1;`;
@@ -19,6 +20,7 @@ router.get('/check-status/:email', rejectUnauthenticated, (req, res) => {
     .catch((err) => res.status(500).json({ success: false, error: err.message }))
 })
 
+// Here we build our Stripe checkout session
 router.post('/construct-session', rejectUnauthenticated, async (req, res) => {
     const email = req.body.user_email;
     console.log(email);

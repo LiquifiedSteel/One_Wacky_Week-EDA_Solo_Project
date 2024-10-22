@@ -96,7 +96,7 @@ router.post('/logout', (req, res, next) => {
 // This PUT route is used to update the user's profile picture
 router.post('/profile/:user', rejectUnauthenticated, (req, res) => {
   const url = req.body.url;
-  console.log(url, req.params.user);
+  
   const query = `UPDATE "user" SET "image_url" = $1 WHERE "id"=$2;`;
 
   pool.query(query, [url, req.params.user])
