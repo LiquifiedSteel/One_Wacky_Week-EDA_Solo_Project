@@ -24,6 +24,7 @@ import Success from '../success/success';
 import AdminProtectedRoute from '../AdminProtectedRoute/AdminProtectedRoute';
 
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {

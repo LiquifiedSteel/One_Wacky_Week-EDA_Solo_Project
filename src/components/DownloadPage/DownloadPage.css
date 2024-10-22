@@ -1,0 +1,9 @@
+#downloadGrid {
+    background-color: #8BE8CB;
+}
+
+.downloadCol1 {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}

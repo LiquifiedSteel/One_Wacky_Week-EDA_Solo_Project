@@ -1,14 +1,16 @@
 import axios from 'axios';
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+
 
 function DownloadPage() {
   const user = useSelector((store) => store.user);
   console.log(user);
 
   // Here we check if the user has already been to stripe or not, if they have completed the purchase already it will
-  // give them a confimation message, later it will give them the downloadable game, and if they haven't paid for the game,
-  // they will be sent to stripe to make the purchase
+  // give them a confirmation message, later it will give them the downloadable game, and if they haven't paid for the game,
+  // they will be sent to stripe to make the purchase.
   function handleClick() {
     if(user.purchased) {
        alert('Thank you for buying the game, there is nothing to download right now, but the database has it saved that you purchased it. So when the game is released, you will already own it. Just think of it as a pre-order')
@@ -26,14 +28,14 @@ function DownloadPage() {
   }
 
   return (
-    <div className="container">
-      <div className="grid">
+    <Container>
+      <Row>
         
-        <div className="grid-col grid-col_6">
+        <Col>
           <p>Download instructions will go here</p>
-        </div>
+        </Col>
 
-        <div className="grid-col grid-col_6">
+        <Col>
 
           <div>
             <button onClick={() => handleClick()}>{user.purchased ? "Download for Windows" : "Purchase One Wacky Week"}</button>
@@ -43,9 +45,9 @@ function DownloadPage() {
 
           </div>
           
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
