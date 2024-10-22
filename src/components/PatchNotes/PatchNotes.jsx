@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// This component will only grab the patch notes from the database and then display them all
+
 function PatchNotes() {
     const [patches, setPatches] = useState([]);
     useEffect(()=> {

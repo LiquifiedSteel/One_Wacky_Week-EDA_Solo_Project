@@ -5,7 +5,6 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h3>Welcome to the One Wacky Week website! Feel free to explore!</h3>
 
       <div className="grid">
         <div className="grid-col grid-col_8">
@@ -13,6 +12,8 @@ function LandingPage() {
           <PatchNotes />
         </div>
         <div className="grid-col grid-col_4">
+          <h3>Welcome to the One Wacky Week website! Feel free to explore!</h3>
+          <br />
           <p>The Discord Channel</p>
         </div>
       </div>

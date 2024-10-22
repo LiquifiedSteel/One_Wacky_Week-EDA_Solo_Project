@@ -10,6 +10,8 @@ function Success() {
     const dispatch = useDispatch()
     const sessionID = new URLSearchParams(location.search).get('session_id');
     const history = useHistory();
+
+    // This page is simply meant to ensure that the user will have a smooth transition from Stripe back to the download page.
     useEffect (() => {
         axios({
             method: 'POST',

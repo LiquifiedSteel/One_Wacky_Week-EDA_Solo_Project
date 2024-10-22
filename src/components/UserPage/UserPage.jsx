@@ -36,6 +36,7 @@ function UserPage() {
     ).open();
  }
 
+  // Here we flag the users account for deletion, the account is not actually deleted from the database, but it can no longer be accessed by the user
   const flagAccount = () => {
     if(window.confirm("Are you sure you want to delete your account? This cannot be undone!")){
       dispatch({type: "FLAG_ACCOUNT"});

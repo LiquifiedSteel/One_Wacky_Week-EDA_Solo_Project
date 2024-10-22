@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 function RegisterForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [question1, setQuestion1] = useState(null);
-  const [question2, setQuestion2] = useState(null);
-  const [question3, setQuestion3] = useState(null);
-  const [email, setEmail] = useState('');
-  const [answer1, setAnswer1] = useState('');
-  const [answer2, setAnswer2] = useState('');
-  const [answer3, setAnswer3] = useState('');
+  const [username, setUsername] = useState(''); // username is used to store the new account's username
+  const [password, setPassword] = useState(''); // password is used to store the new account's password
+  const [question1, setQuestion1] = useState(null); // question1 is used to store the first of the new account's password recovery questions
+  const [question2, setQuestion2] = useState(null); // question2 is used to store the second of the new account's password recovery questions
+  const [question3, setQuestion3] = useState(null); // question3 is used to store the third of the new account's password recovery questions
+  const [email, setEmail] = useState(''); // email is used to store the new account's email
+  const [answer1, setAnswer1] = useState(''); // answer1 is used to store the answer to question 1
+  const [answer2, setAnswer2] = useState(''); // answer2 is used to store the answer to question 2
+  const [answer3, setAnswer3] = useState(''); // answer3 is used to store the answer to question 3
   const errors = useSelector((store) => store.errors);
   const questions = useSelector(store => store.questions);
   const dispatch = useDispatch();
@@ -41,6 +41,7 @@ function RegisterForm() {
         trackTLD += email[i];
       }
     }
+    // here we have some very rudamentary email checking, I will improve it with some real email verification in the future
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(re.test(email) && (trackProvider === '@gmail' || trackProvider === '@yahoo' || trackProvider === '@outlook' || trackProvider === '@hotmail' || trackProvider === '@aol' ||
       trackProvider === '@icloud' || trackProvider === '@protonmail' || trackProvider === '@zoho' || trackProvider === '@mail' || trackProvider === '@me' ||
@@ -51,7 +52,9 @@ function RegisterForm() {
       trackTLD === '.gov' || trackTLD === '.mil' || trackTLD === '.io' || trackTLD === '.co' || trackTLD === '.me' || 
       trackTLD === '.tv' || trackTLD === '.us' || trackTLD === '.ca' || trackTLD === '.uk' || trackTLD === '.au' || 
       trackTLD === '.de' || trackTLD === '.jp' || trackTLD === '.fr' || trackTLD === '.in')) {
-      if(question1 && question2 && question3) {
+      
+      
+        if(question1 && question2 && question3) {
         dispatch({
           type: 'REGISTER',
           payload: {

@@ -1,9 +1,6 @@
 import React from 'react';
 
-// This is one of our simplest components
-// It doesn't have local state,
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is'
+// The about page is very simple, it will just have some basic information to read, as well as a few easter eggs to find.
 
 function AboutPage() {
   return (

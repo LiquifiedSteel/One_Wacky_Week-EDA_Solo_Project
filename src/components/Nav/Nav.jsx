@@ -39,8 +39,8 @@ function Nav() {
 
             <Link className='navLink' to="/user">
               {user.username}
+              <img src={user.image_url} />
             </Link>
-            <img src={user.image_url} />
           </>
         )}
       </div>
