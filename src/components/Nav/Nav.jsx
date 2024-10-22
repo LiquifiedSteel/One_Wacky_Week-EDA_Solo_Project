@@ -4,6 +4,9 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
 
+import Image from 'react-bootstrap/Image';
+
+
 function Nav() {
   const user = useSelector((store) => store.user);
 
@@ -12,7 +15,7 @@ function Nav() {
       <Link to="/home">
         <h2 className="nav-title">One Wacky Week</h2>
       </Link>
-      <div>
+      <div className='navLinks'>
         {user.isAdmin && <Link className="navLink" to="/admin">Admin</Link>}
         <Link className="navLink" to="/home">
           Home
@@ -37,9 +40,9 @@ function Nav() {
 
             <LogOutButton className="navLink" />
 
-            <Link className='navLink' to="/user">
+            <Link className='navLink account' to="/user">
               {user.username}
-              <img src={user.image_url} />
+              <Image className='profilePic' src={user.image_url} />
             </Link>
           </>
         )}

@@ -1,0 +1,13 @@
+.info {
+    max-width: 70%;
+    margin: auto;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 1.6vh;
+}
+
+.portrait {
+    max-width: 80%;
+    margin-left: auto;
+    margin-top: 3vh;
+}

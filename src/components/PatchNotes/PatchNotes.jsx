@@ -14,9 +14,12 @@ function PatchNotes() {
     }, [])
 
     return(
-        <div>
-            {patches.map(patch => <p key={patch.id}><strong>{patch.number}:</strong> {patch.notes}</p>)}
-        </div>
+        <>
+            <h3>PATCH NOTES</h3>
+            <div className="patches">
+                {patches.map(patch => <p key={patch.id}><strong>{patch.number}:</strong> {patch.notes}</p>)}
+            </div>
+        </>
     )
 }
 

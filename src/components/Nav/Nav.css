@@ -4,8 +4,8 @@
   justify-content: space-between;
   align-items: center;
 
-  margin: 0 0 30px;
-  background-color: #00acb0;
+  margin: 0px;
+  background-color: #13315C;
   overflow: hidden;
 }
 
@@ -24,11 +24,11 @@
 .navLink {
   display: inline-block;
   color: #f2f2f2;
-  background-color: #00acb0;
+  background-color: #13315C;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 2vh;
 
   /* these last two make the logout button in
   the nav bar look like another link */
@@ -38,5 +38,30 @@
 }
 
 .navLink:hover {
-  background-color: #008183;
+  background-color: #134074;
+}
+
+.profilePic {
+  width: 6vh;
+  height: 6vh;
+  border-radius: 50%;
+  margin-left: 2vh;
+  align-self: center;
+  object-fit: cover;
+  object-position: center;
+}
+
+.account {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.navLinks {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
