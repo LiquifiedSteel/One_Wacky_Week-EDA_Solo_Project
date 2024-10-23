@@ -1,13 +1,48 @@
 .info {
-    max-width: 70%;
+    max-width: 75%;
+    text-align: center;
     margin: auto;
     font-family: 'Times New Roman', Times, serif;
-    font-weight: 600;
-    font-size: 1.6vh;
+    font-weight: 700;
+    font-size: 1.8vh;
+    color: #134074;
 }
 
 .portrait {
     max-width: 80%;
-    margin-left: auto;
     margin-top: 3vh;
+}
+.movePortrait {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+p.portrait{
+    text-align: center;
+    font-size: 2vw;
+}
+
+.aboutContainer {
+    background-color: #F2BB05;
+}
+
+.aboutGamePoster {
+    min-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .info {
+        max-width: 90%;
+        font-size: 2vh;
+    }
+    .portrait {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 425px) {
+    p.portrait{
+        font-size: 5vw;
+    }
 }

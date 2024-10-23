@@ -10,17 +10,18 @@
 }
 
 .fix {
+  font-family: 'Times New Roman', Times, serif;
   max-width: 80%;
   margin: auto;
   margin-top: 2vh;
   font-size: 3vmin;
-  font-weight: 600;
+  font-weight: 700;
   color: #134074;
 }
 
 p.fix {
   font-size: 1.8vmin;
-  font-weight: 500;
+  font-weight: 600;
   color: #134074;
 }
 
@@ -29,15 +30,60 @@ p.fix {
 }
 
 h3.patch {
+  font-family: 'Times New Roman', Times, serif;
   font-size: 2.5vmin;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
   color: #134074;
   margin-top: 2vh;
 }
 
 p.patch {
+  font-family: 'Times New Roman', Times, serif;
   font-size: 1.7vmin;
   color: #134074;
+  font-weight: 600;
 }
 
+@media (max-width: 767px) {
+  #home2{
+    display: none;
+  }
+
+  .fix {
+    max-width: 90%;
+    text-align: center;
+    margin: auto;
+    margin-top: 3vh;
+    font-size: 2vh;
+    font-weight: 600;
+    color: #134074;
+  }
+
+  p.fix {
+    font-size: 1.7vh;
+    font-weight: 600;
+    color: #134074;
+    margin-top: auto;
+    margin-bottom: 2vh;
+  }
+
+  h3.patch {
+    font-size: 2vh;
+    text-align: center;
+    font-weight: 600;
+    color: #134074;
+    margin-top: 2vh;
+  }
+  
+  p.patch {
+    font-size: 1.5vh;
+    color: #134074;
+  }
+}
+
+@media (min-width: 768px) {
+  #home1{
+    display: none;
+  }
+}
