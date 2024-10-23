@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+
+import "./DownloadPage.css";
 
 
 function DownloadPage() {
@@ -28,23 +30,23 @@ function DownloadPage() {
   }
 
   return (
-    <Container>
+    <Container className='downloadWallpaper' fluid>
       <Row>
-        
-        <Col>
-          <p>Download instructions will go here</p>
+        <Col xs={12} md={6} className='downloadCol'>
+          <Card className='downloadCard'>
+            <div>
+              <button className='downloadButton btn mybtn' onClick={() => handleClick()}>{user.purchased ? "Download for Windows" : "Purchase One Wacky Week"}</button>
+            </div>
+            <div>
+              {user.purchased && <button className='downloadButton btn mybtn' onClick={() => handleClick()}>Download for MacOS</button>}
+            </div>
+          </Card>
         </Col>
-
-        <Col>
-
-          <div>
-            <button onClick={() => handleClick()}>{user.purchased ? "Download for Windows" : "Purchase One Wacky Week"}</button>
-          </div>
-          <div>
-            {user.purchased && <button onClick={() => handleClick()}>Download for MacOS</button>}
-
-          </div>
-          
+        <Col xs={12} md={6} className='downloadCol'>
+          <Card className='downloadCard'>
+            <p className='downloadInstructions'><strong className='spanStrong'>Before Payment:</strong> You need to click the "Purchase One Wacky Week" button to buy the game.</p>
+            <p className='downloadInstructions'><strong className='spanStrong'>After Payment:</strong> You can click either button to recieve the download for the game. (both buttons currently give an alert confirming that you have purchased the game)</p>
+          </Card>
         </Col>
       </Row>
     </Container>
