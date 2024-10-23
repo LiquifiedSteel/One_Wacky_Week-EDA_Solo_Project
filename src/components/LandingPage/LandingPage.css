@@ -2,6 +2,13 @@
 .gamePoster {
   min-width: 100%;
   margin: 0px;
+  box-shadow: 4px 7px 6px 5px rgba(42, 40, 40, 0.823);
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+strong {
+  font-size: 2.2vh;
 }
 
 .patches {
@@ -23,10 +30,6 @@ p.fix {
   font-size: 1.8vmin;
   font-weight: 600;
   color: #134074;
-}
-
-.homeContainer {
-  background-color: #F2BB05;
 }
 
 h3.patch {

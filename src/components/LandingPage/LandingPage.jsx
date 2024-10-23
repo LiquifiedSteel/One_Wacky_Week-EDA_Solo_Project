@@ -6,7 +6,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 function LandingPage() {
 
   return (
-    <Container className='homeContainer' fluid>
+    <Container fluid>
       <Row>
         <Col id='home1' xs={12} md={4}>
           <h3 className='fix'>Welcome to the One Wacky Week website! Feel free to explore!</h3>
@@ -19,7 +19,7 @@ function LandingPage() {
           <Image className='gamePoster' src='https://m.media-amazon.com/images/I/61UfwlPvR0L._AC_UF894,1000_QL80_.jpg' fluid />
           <PatchNotes />
         </Col>
-        
+
         <Col id='home2' xs={12} md={4}>
           <h3 className='fix'>Welcome to the One Wacky Week website! Feel free to explore!</h3>
           <br />

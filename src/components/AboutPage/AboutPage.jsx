@@ -6,7 +6,7 @@ import './AboutPage.css'
 
 function AboutPage() {
   return (
-    <Container className='aboutContainer' fluid>
+    <Container fluid>
       <Row>
         <Col xs={12} md={8}>
 

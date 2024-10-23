@@ -4,6 +4,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import { useState } from 'react';
 import { useScript } from '../../hooks/useScript';
 import axios from 'axios';
+import "./UserPage.css";
+import { Card, Container } from 'react-bootstrap';
 
 function UserPage() {
   const dispatch = useDispatch();
@@ -44,20 +46,24 @@ function UserPage() {
   }
 
   return (
-    <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <img src={user.image_url} />
-      <p>Your email is: {user.user_email}</p>
-      {user.purchased && <p>You have purchased the game! Thank You!</p>}
-      <LogOutButton className="btn" />
-      {!user.isAdmin && <button onClick={flagAccount}>Delete Account</button>}
-
-          <h3>Set New Profile Picture</h3>
+    <Container fluid>
+      <center>
+        <Card className='userCard'>
+          <h2 className='userTextColor'>Welcome, {user.username}!</h2>
+          <Card.Img className='portrait userPic' src={user.image_url} />
+          <h3 className='userTextColor'>Set New Profile Picture</h3>
           { /* This just sets up the window.cloudinary widget */ }
           {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}
 
-          File to upload: <button type="button" onClick={openWidget}>Pick File</button>
-    </div>
+          <p className='userTextColor'>File to upload: <button type="button" onClick={openWidget}>Pick File</button></p>
+
+          <p className='userTextColor'>Your email is: {user.user_email}</p>
+          {user.purchased && <p>You have purchased the game! Thank You!</p>}
+          <LogOutButton className="btn mybtn mylogoutButton" />
+          {!user.isAdmin && <button className='btn mybtn mylogoutButton myDelete' onClick={flagAccount}>Delete Account</button>}
+        </Card>
+      </center>
+    </Container>
   );
 }
 

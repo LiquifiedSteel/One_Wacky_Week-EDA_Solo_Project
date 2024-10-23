@@ -11,6 +11,7 @@
 .portrait {
     max-width: 80%;
     margin-top: 3vh;
+    box-shadow: 4px 7px 6px 5px rgba(42, 40, 40, 0.823);
 }
 .movePortrait {
     display: flex;
@@ -21,14 +22,14 @@
 p.portrait{
     text-align: center;
     font-size: 2vw;
-}
-
-.aboutContainer {
-    background-color: #F2BB05;
+    box-shadow: none;
 }
 
 .aboutGamePoster {
     min-width: 100%;
+    box-shadow: 4px 7px 6px 5px rgba(42, 40, 40, 0.823);
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
 
 @media (max-width: 768px) {

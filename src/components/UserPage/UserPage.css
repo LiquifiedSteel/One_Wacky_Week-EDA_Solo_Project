@@ -1,0 +1,28 @@
+.userTextColor {
+    color: #134074;
+}
+
+.userPic {
+    margin: auto;
+    margin-bottom: 3vh;
+    width: 15vh;
+    height: 15vh;
+    border-radius: 50%;
+    align-self: center;
+    object-fit: cover;
+    object-position: center;
+}
+
+.userCard {
+    margin: 4vw;
+    margin-top: 4vh;
+}
+
+.mylogoutButton {
+    max-width: fit-content;
+    margin: auto;
+}
+
+.myDelete.myDelete {
+    background-color: red;
+}
