@@ -1,11 +1,28 @@
 .info {
-    max-width: 75%;
+    max-width: 85%;
     text-align: center;
     margin: auto;
     font-family: 'Times New Roman', Times, serif;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 2vh;
-    color: #134074;
+    color: white;
+}
+
+.aboutPoster {
+    background-image: url("https://m.media-amazon.com/images/I/61UfwlPvR0L._AC_UF894,1000_QL80_.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+}
+
+.aboutCard {
+    width: fit-content;
+    margin: auto;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    background-color: rgba(128, 119, 119, 0.7);
+    backdrop-filter: blur(4px) brightness(.5);
 }
 
 .portrait {
@@ -17,12 +34,6 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-}
-
-p.portrait{
-    text-align: center;
-    font-size: 2vw;
-    box-shadow: none;
 }
 
 .aboutGamePoster {
@@ -39,11 +50,5 @@ p.portrait{
     }
     .portrait {
         max-width: 100%;
-    }
-}
-
-@media (max-width: 425px) {
-    p.portrait{
-        font-size: 5vw;
     }
 }

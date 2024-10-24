@@ -7,16 +7,20 @@
 }
 
 .downloadCard {
-    
     width: fit-content;
     margin: auto;
     margin-top: 5vh;
     margin-bottom: 5vh;
-    background-color: rgba(128, 119, 119, 0.8);
+    background-color: rgba(128, 119, 119, 0.7);
+    backdrop-filter: blur(3px) brightness(.6);
 }
 
 .downloadButton {
-    margin: 4vh;
+    margin: auto;
+    margin-top: 4vh;
+    width: 50%;
+    height: fit-content;
+    font-weight: 700;
 }
 
 .downloadInstructions {
@@ -24,11 +28,6 @@
     font-size: 3vh;
     margin: 4vh;
     font-weight: 700;
-}
-
-.spanStrong {
-    font-size: 3.5vh;
-    text-decoration: underline;
 }
 
 @media (max-width: 767px) {

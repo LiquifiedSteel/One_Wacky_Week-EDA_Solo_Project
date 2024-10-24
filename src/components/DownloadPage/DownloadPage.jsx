@@ -34,18 +34,18 @@ function DownloadPage() {
       <Row>
         <Col xs={12} md={6} className='downloadCol'>
           <Card className='downloadCard'>
-            <div>
-              <button className='downloadButton btn mybtn' onClick={() => handleClick()}>{user.purchased ? "Download for Windows" : "Purchase One Wacky Week"}</button>
-            </div>
-            <div>
-              {user.purchased && <button className='downloadButton btn mybtn' onClick={() => handleClick()}>Download for MacOS</button>}
-            </div>
+
+              <button className='downloadButton btn mybtn' onClick={() => handleClick()}>{user.purchased ? "Download Windows" : "Purchase One Wacky Week"}</button>
+              
+              {user.purchased && <button className='downloadButton btn mybtn' onClick={() => handleClick()}>Download MacOS</button>}
+            
+            {!user.purchased && <p className='downloadInstructions'>You need to click the "Purchase One Wacky Week" button to buy the game.</p>}
+            {user.purchased && <p className='downloadInstructions'>You can click either button to recieve the download for the game. (both buttons currently give an alert confirming that you have purchased the game)</p>}
           </Card>
         </Col>
         <Col xs={12} md={6} className='downloadCol'>
           <Card className='downloadCard'>
-            <p className='downloadInstructions'><strong className='spanStrong'>Before Payment:</strong> You need to click the "Purchase One Wacky Week" button to buy the game.</p>
-            <p className='downloadInstructions'><strong className='spanStrong'>After Payment:</strong> You can click either button to recieve the download for the game. (both buttons currently give an alert confirming that you have purchased the game)</p>
+            
           </Card>
         </Col>
       </Row>
