@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -78,15 +79,15 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+    <Form className="formPanel myform" onSubmit={registerUser}>
+      <h2 className='blue'>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
       <div>
-        <label htmlFor="username">
+        <label className='blue' htmlFor="username">
           Username:
           <input
             type="text"
@@ -98,7 +99,7 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <label htmlFor="password">
+        <label className='blue' htmlFor="password">
           Password:
           <input
             type="password"
@@ -110,37 +111,43 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <label htmlFor='email'>
+        <label className='blue' htmlFor='email'>
           Email:
           <input type='email' placeholder='Your Email' required value={email} onChange={(event) => setEmail(event.target.value)} />
         </label>
       </div>
-      <div id='recovery'>
-        <p>Password Recovery Questions</p>
-        <label htmlFor='question1'>
+
+
+      <div className='blue' id='recovery'>
+        <p className='blue'>Password Recovery Questions</p>
+        <label className='blue question' htmlFor='question1'>
           Question 1:
-          <select name='question1' value={question1} onChange={(event) => {setQuestion1(event.target.value);}}>
+          <Form.Select className='expandable' name='question1' value={question1} onChange={(event) => {setQuestion1(event.target.value);}}>
             <option value={null}></option>
             {questions.filter((question)=>Number(question2) !== Number(question.id) && Number(question3) !== Number(question.id)).map(question =><option key={question.id} value={question.id}>{question.Questions}</option>)}
-          </select>
+          </Form.Select>
           <input type='text' placeholder='Answer to question 1' required value={answer1} onChange={(event) => setAnswer1(event.target.value)}/>
         </label>
-      
-        <label htmlFor='question2'>
+
+        <br />
+
+        <label className='blue question' htmlFor='question2'>
           Question 2:
-          <select name='question2' value={question2} onChange={(event) => {setQuestion2(event.target.value);}}>
+          <Form.Select className='expandable' name='question2' value={question2} onChange={(event) => {setQuestion2(event.target.value);}}>
             <option value={null}></option>
             {questions.filter((question)=>Number(question1) !== Number(question.id) && Number(question3) !== Number(question.id)).map(question =><option key={question.id} value={question.id}>{question.Questions}</option>)}
-          </select>
+          </Form.Select>
           <input type='text' placeholder='Answer to question 2' required value={answer2} onChange={(event) => setAnswer2(event.target.value)}/>
         </label>
 
-        <label htmlFor='question3'>
+        <br />
+
+        <label className='blue question' htmlFor='question3'>
           Question 3:
-          <select name='question3' value={question3} onChange={(event) => {setQuestion3(event.target.value);}}>
+          <Form.Select className='expandable' name='question3' value={question3} onChange={(event) => {setQuestion3(event.target.value);}}>
             <option value={null}></option>
             {questions.filter((question)=>Number(question1) !== Number(question.id) && Number(question2) !== Number(question.id)).map(question =><option key={question.id} value={question.id}>{question.Questions}</option>)}
-          </select>
+          </Form.Select>
           <input type='text' placeholder='Answer to question 3' required value={answer3} onChange={(event) => setAnswer3(event.target.value)}/>
         </label>
       </div>
@@ -148,7 +155,7 @@ function RegisterForm() {
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>
-    </form>
+    </Form>
   );
 }
 

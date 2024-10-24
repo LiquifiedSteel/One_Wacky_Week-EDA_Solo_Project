@@ -28,3 +28,13 @@
 .myDelete.myDelete {
     background-color: red;
 }
+
+.mylogoutButton.mylogoutButton:hover {
+    background-color: #134074;
+    color: #F2BB05;
+}
+
+.myDelete.myDelete:hover {
+    background-color: black;
+    color: red;
+}

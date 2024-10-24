@@ -1,0 +1,18 @@
+.blue {
+    color: #89A6FB;
+}
+
+.myform {
+    width: fit-content;
+    display: flex;
+    flex-flow: column;
+    background-color: #0C453F;
+    max-width: 43vw;
+    margin-top: 2vh;
+    box-shadow: 4px 7px 6px 5px rgba(42, 40, 40, 0.823);
+}
+
+.expandable {
+    size: 1vh;
+    font-size: 2vh;
+}
