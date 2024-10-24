@@ -1,0 +1,52 @@
+.height.height {
+    height: 4vh;
+}
+
+.horizontal {
+    display: flex;
+    flex-flow: row;
+    margin: auto;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+}
+
+.vertical {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    margin-right: 1vw;
+}
+
+textarea {
+    height: 10vh;
+    min-height: 10vh;
+    max-height: 15vh;
+}
+
+Table {
+    border-collapse: collapse;
+    border: 3px solid #0C453F;
+    background-color: white;
+    text-align: center;
+    font-weight: 700;
+}
+
+tr {
+    border: 1px solid #0C453F;
+}
+
+th {
+    border: 1px solid #0C453F;
+    padding: 1vh;
+}
+
+td {
+    border: 1px solid #0C453F;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.tableBackground.tableBackground:nth-child(odd) {
+    background-color: #0C453F;
+    color: #89A6FB;
+}
