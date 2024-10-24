@@ -66,12 +66,12 @@ router.post('/register', (req, res, next) => {
             pool.query(`INSERT INTO "users_questions" ("user_id", "question_id", "answer") VALUES ($1, $2, $3), ($1, $4, $5), ($1, $6, $7);`, [response.rows[0].id, req.body.question1, req.body.answer1, req.body.question2, req.body.answer2, req.body.question3, req.body.answer3])
                 .then(() => res.sendStatus(201))
                 .catch((err) => {
-                    console.log('User registration failed at user questions: ', err);
+                    console.log('User registration failed at user recovery questions questions: ', err);
                     res.sendStatus(500);
             })
         })
         .catch((err) => {
-          console.log('User registration failed at username, password, and answers: ', err);
+          console.log('User registration failed at username, password, and email: ', err);
           res.sendStatus(500);
         });
 });
