@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 import { Card, Col, Container, Row, Table } from "react-bootstrap";
 import "./AdminPage.css"
@@ -8,11 +9,11 @@ import "./AdminPage.css"
 function AdminPage() {
     const users = useSelector(store => store.admin.adminUsers); // grabs all of the users from redux
     const payments = useSelector(store => store.admin.adminPayments); // grabs all of the payments from redux
-    const QnA = useSelector(store => store.admin.adminQuestions); // grabs all of the question IDs and answers for every user
     const [notes, setNotes] = useState(''); // holds the notes that are typed in until they are dispatched to add a new patch note
     const [number, setNumber] = useState(''); // holds the number that is typed in until it is dispatched to add a new patch note
     const [attempt, setAttempt] = useState(false); // is used to make sure the page doesn't try and render before the store is populated, otherwise it will throw errors
     const [patches, setPatches] = useState([]);
+    const history = useHistory();
 
     const dispatch = useDispatch();
     // the useEffect is used to populate the redux store
@@ -20,11 +21,7 @@ function AdminPage() {
         dispatch({type: 'FETCH_USERS'});
         dispatch({type: 'FETCH_PAYMENTS'});
         dispatch({type: 'FETCH_QUESTIONS'});
-        axios({
-            method: 'GET',
-            url: '/api/patch'
-        }).then(response => setPatches(response.data))
-        .catch(err => console.error("Failed to collect patch notes: ", err));
+        fetchPatches();
         // here we tell the page that it can now feel free to render the DOM
         setAttempt(true);
     }, [])
@@ -34,11 +31,8 @@ function AdminPage() {
         dispatch({type: 'ADD_PATCH', payload: {notes: notes, number: number}});
         setNotes('');
         setNumber('');
-        axios({
-            method: 'GET',
-            url: '/api/patch'
-        }).then(response => setPatches(response.data))
-        .catch(err => console.error("Failed to collect patch notes: ", err));
+        fetchPatches();
+        history.push('/');
     }
 
     // handleDelete dispatches to the REMOVE_PATCH saga which will then remove the patch note from
@@ -46,6 +40,11 @@ function AdminPage() {
     function handleDelete(patch) {
         console.log(patch);
         dispatch({type: 'REMOVE_PATCH', payload: patch.number});
+        fetchPatches();
+        history.push('/');
+    }
+
+    function fetchPatches() {
         axios({
             method: 'GET',
             url: '/api/patch'
@@ -57,7 +56,6 @@ function AdminPage() {
     // corresponding id and will remove them from the user table
     function deleteUser(id) {
         dispatch({type: 'DELETE_USER', payload: id});
-        setNumber('');
     }
 
     return !attempt ? null :(

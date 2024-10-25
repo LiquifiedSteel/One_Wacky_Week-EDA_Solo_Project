@@ -67,6 +67,8 @@ function* deleteUser(action) {
         // If an admin triggers the delete user sequence,
         // this will run and will delete the user from the database
         yield axios.delete(`/api/user/hardDelete/${action.payload}`);
+
+        yield put({type: 'FETCH_USERS'});
     } catch (error) {
         console.log('User DELETE request failed', error);
     }
