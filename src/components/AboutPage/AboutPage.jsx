@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Container, Image, Row, Card } from 'react-bootstrap';
 import './AboutPage.css'
 
 // The about page is very simple, it will just have some basic information to read, as well as a few easter eggs to find.
 
 function AboutPage() {
+
+  useEffect(() => {
+    document.title = "About";
+  }, []);
+
   return (
     <Container className='aboutPoster' fluid>
       <Row>

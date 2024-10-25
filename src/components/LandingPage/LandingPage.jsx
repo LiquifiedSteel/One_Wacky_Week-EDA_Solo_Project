@@ -2,8 +2,13 @@ import './LandingPage.css';
 import PatchNotes from '../PatchNotes/PatchNotes';
 import Image from 'react-bootstrap/Image';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useEffect } from 'react';
 
 function LandingPage() {
+
+  useEffect(() => {
+    document.title = "Home";
+  }, []);
 
   return (
     <Container fluid>

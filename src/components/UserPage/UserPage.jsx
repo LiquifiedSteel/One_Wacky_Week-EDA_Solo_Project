@@ -1,7 +1,7 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useScript } from '../../hooks/useScript';
 import axios from 'axios';
 import "./UserPage.css";
@@ -12,6 +12,9 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   let image = {file_url: null};
   
+  useEffect(() => {
+    document.title = "User Details";
+  }, []);
 
   const openWidget = () => {
     // Currently there is a bug with the Cloudinary <Widget /> component

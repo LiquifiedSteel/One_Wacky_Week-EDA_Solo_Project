@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
@@ -28,6 +28,10 @@ function DownloadPage() {
       .catch(err => console.error('Failed to create checkout session', err))
     }
   }
+
+  useEffect(() => {
+    document.title = "Download";
+  }, []);
 
   return (
     <Container className='downloadWallpaper' fluid>

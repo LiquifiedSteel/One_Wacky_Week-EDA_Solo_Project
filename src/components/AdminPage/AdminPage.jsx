@@ -18,6 +18,7 @@ function AdminPage() {
     const dispatch = useDispatch();
     // the useEffect is used to populate the redux store
     useEffect(()=> {
+        document.title = "Admin"
         dispatch({type: 'FETCH_USERS'});
         dispatch({type: 'FETCH_PAYMENTS'});
         dispatch({type: 'FETCH_QUESTIONS'});
@@ -138,6 +139,7 @@ function AdminPage() {
                 </Col>
 
                 <Col xs={12} md={5}>
+                    <h3>New Patch Note Form</h3>
                     <Card>
                         <div className="horizontal">
                             <div className="vertical">
