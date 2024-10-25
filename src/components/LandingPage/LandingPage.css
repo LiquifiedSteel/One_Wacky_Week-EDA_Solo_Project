@@ -1,4 +1,3 @@
-
 .gamePoster {
   min-width: 100%;
   margin: 0px;
@@ -26,10 +25,25 @@ strong {
   color: #134074;
 }
 
+.fixing {
+  font-family: 'Times New Roman', Times, serif;
+  width: fit-content;
+  margin: auto;
+  padding: 15vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  font-size: 4.2vh;
+  font-weight: 800;
+  color: #134074;
+  border-bottom: 8px groove #134074;
+  margin-bottom: 3vh;
+}
+
 p.fix {
-  font-size: 1.8vh;
+  font-size: 1.9vh;
   font-weight: 600;
   color: #134074;
+  margin-top: 3vh;
 }
 
 h3.patch {
@@ -82,6 +96,13 @@ p.patch {
   p.patch {
     font-size: 2vh;
     color: #134074;
+  }
+
+  .fixing {
+    padding: 20vw;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    font-size: 4vh;
   }
 }
 

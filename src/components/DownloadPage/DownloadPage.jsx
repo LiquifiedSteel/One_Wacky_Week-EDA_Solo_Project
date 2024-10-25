@@ -35,6 +35,7 @@ function DownloadPage() {
 
   return (
     <Container className='downloadWallpaper' fluid>
+      <h1 className='fixing aboutCard'>Download</h1>
       <Row>
         <Col xs={12} md={6} className='downloadCol'>
           <Card className='downloadCard'>

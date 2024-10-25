@@ -23,6 +23,8 @@
     margin-bottom: 3vh;
     background-color: rgba(128, 119, 119, 0.7);
     backdrop-filter: blur(4px) brightness(.5);
+    color: white !important;
+    border-bottom: 8px groove white !important;
 }
 
 .portrait {

@@ -12,6 +12,7 @@ function AboutPage() {
 
   return (
     <Container className='aboutPoster' fluid>
+      <h1 className='aboutCard fixing'>About</h1>
       <Row>
         <Col xs={12} md={8}>
           <Card className='aboutCard'>
