@@ -63,7 +63,7 @@ function AdminPage() {
         <Container fluid id="admin">
             <Row>
                 <Col xs={12} md={7}> {/* This table is going to hold the information for every user */}
-                    <h3>Accounts Table</h3>
+                    <h3 className="space">Accounts Table</h3>
                     <table>
                         <thead>
                             <tr>
@@ -139,7 +139,7 @@ function AdminPage() {
                 </Col>
 
                 <Col xs={12} md={5}>
-                    <h3>New Patch Note Form</h3>
+                    <h3 className="space">New Patch Note Form</h3>
                     <Card>
                         <div className="horizontal">
                             <div className="vertical">
@@ -150,7 +150,7 @@ function AdminPage() {
                         </div>
                     </Card>
                     
-                    <h3>Patch Notes</h3>
+                    <h3 className="space">Patch Notes</h3>
                     <table>
                         <thead>
                             <tr>

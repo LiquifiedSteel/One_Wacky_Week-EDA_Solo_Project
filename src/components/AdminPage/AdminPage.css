@@ -50,3 +50,11 @@ td {
     background-color: #0C453F;
     color: #89A6FB;
 }
+
+.space {
+    margin: auto;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    width: 100%;
+    text-align: center;
+}
