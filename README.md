@@ -22,12 +22,10 @@ The first image here is how the Navbar looks on desktop, the second it how it lo
 
 ![screenshot of the nabar on a mobile device](./public/wireframes/navCond.png)
 
-The Home/Landing page is the first page that a user will see
-- It will have a Navbar which will have links to the about page, the download page, and the sign-in page.
-- The game's patch notes will be displayed on the page from most recent to oldest.
-- The game's banner which will be displayed above the patch notes
-- The creator's socials will be displayed, since all I have and use is Discord, it will be the only listed social.
-
+The Home/Landing page is the first page that a user sees
+- The game's patch notes are displayed on the page from most recent to oldest.
+- Some game art is to be displayed above the patch notes
+- The creator's socials are displayed here.
 
 ![screenshot of the home page](./public/wireframes/home.png)
 
