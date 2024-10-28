@@ -20,6 +20,7 @@ Every page has the Navbar displayed at the top and it is setup for desktop and m
 How Navbar looks on Desktop
 ![screenshot of the navbar on a desktop screen](./public/wireframes/navExp.png)
 How Navbar looks on Mobile
+.
 ![screenshot of the nabar on a mobile device](./public/wireframes/navCond.png)
 
 The Home/Landing page is the first page that a user will see
