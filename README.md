@@ -41,3 +41,10 @@ The Login page is another of the four pages accessible without needing an accoun
 - The user can switch to the registration page to create a new account
 
 ![screenshot of the home page](./public/wireframes/login.png)
+
+The Registration page is another of the four pages accessible without needing an account
+- Here is where a user creates a new account
+- Recovery questions will be used for password recovery in the future (will be done before deployment)
+- Email verification will be refined in the future
+
+![screenshot of the home page](./public/wireframes/register.png)
