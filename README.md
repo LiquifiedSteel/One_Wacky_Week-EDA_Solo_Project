@@ -17,7 +17,7 @@ Every page has the Navbar displayed at the top and it is setup for desktop and m
 - The `home` link navigates the user to the home page.
 - When a user is logged in a `Log Out` button will appear and when clicked will log out the user.
 
-The first image here is how the Navbar looks on desktop, the second it how it looks on mobile.
+The first image here is how the Navbar looks on desktop, the second is how it looks on mobile.
 ![screenshot of the navbar on a desktop screen](./public/wireframes/navExp.png)
 
 ![screenshot of the nabar on a mobile device](./public/wireframes/navCond.png)
