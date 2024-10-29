@@ -29,7 +29,7 @@ The Home/Landing page is the first page that a user sees
 
 ![screenshot of the home page](./public/wireframes/home.png)
 
-The About page one of the four pages accessible without needing an account
+The About page is one of the four pages accessible without needing an account
 - Information about the creator and the game are found on this page.
 - Some different game art is to be here as the background of the page.
 - A few easter eggs are to be hidden here.
