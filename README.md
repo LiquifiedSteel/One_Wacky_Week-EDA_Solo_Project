@@ -2,13 +2,17 @@
 
 A website that will be used in the future for selling the video game I am going to make.
 
-## Description
+## Setup
 
 If you want to create a copy of this code and get it working on your computer, you will need to `npm install`, `npm run server`, and `npm run client`. You will also need to create a .env file that will hold your own stripe and cloudinary secrets
 - 'SERVER_SESSION_SECRET'
 - 'GAME_COST'
 - 'VITE_CLOUDINARY_NAME'
 - 'VITE_CLOUDINARY_UPLOAD_PRESET'
+
+You will also need to setup a database called 'alex' as well as copy, paste and run the code in the database.sql file into your database.
+
+## Description
 
 Every page has the Navbar displayed at the top and it is setup for desktop and mobile view
 - There is a `Login / Register` button that will be replaced with the user's username and profile picture upon login, and if that is clicked the user will be taken to the user page.
