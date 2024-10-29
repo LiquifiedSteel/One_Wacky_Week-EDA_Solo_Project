@@ -34,14 +34,14 @@ The About page is one of the four pages accessible without needing an account
 - Some different game art is to be here as the background of the page.
 - A few easter eggs are to be hidden here.
 
-![screenshot of the home page](./public/wireframes/about.png)
+![screenshot of the about page](./public/wireframes/about.png)
 
 The Login page is another of the four pages accessible without needing an account
 - The user logs into their already made account here
 - The user can switch to the registration page to create a new account
 - Upon login the user is taken to the user page
 
-![screenshot of the home page](./public/wireframes/login.png)
+![screenshot of the login page](./public/wireframes/login.png)
 
 The Registration page is another of the four pages accessible without needing an account
 - Here is where a user creates a new account
@@ -49,24 +49,32 @@ The Registration page is another of the four pages accessible without needing an
 - Email verification will be refined in the future
 - Upon login the user is taken to the user page
 
-![screenshot of the home page](./public/wireframes/register.png)
+![screenshot of the registration page](./public/wireframes/register.png)
 
 The User page is where the user can view their profile information
 - The user can change their profile picture here
 - The user can also "delete" their account here. (Deleting here really just flags the account to be deleted on the Admin's account table)
 - User will also be able to logout here
 
-![screenshot of the home page](./public/wireframes/user.png)
+![screenshot of the user page](./public/wireframes/user.png)
 
 The Pre Purchase Download page is where the user can purchase the game
 - The user can click purchase to be taken to strip to buy the game
 - After making the purchase the user will see the Post Purchase Download page
 - The game trailer will be here.
 
-![screenshot of the home page](./public/wireframes/preDownload.png)
+![screenshot of the download page before the user has purchased the game](./public/wireframes/preDownload.png)
 
 The Post Purchase Download page is where the user can purchase the game
 - The user can click either of the download buttons to download the game, one for Windows and one for MacOS.
 - The game trailer will be here as well.
 
-![screenshot of the home page](./public/wireframes/postDownload.png)
+![screenshot of the download page after the user has purchased the game](./public/wireframes/postDownload.png)
+
+The Admin page is where the Admin will manage the Admin things such as accounts, payments and patch notes
+- The Admin will be able to see all the user accounts in the database, including ones that have been flagged for deletion
+- The accounts table will show accounts that have purchased the game at the top and will not be able to be deleted from the database
+- The accounts that have not purchased the game will be displayed at the bottom of the table and will be able to be deleted from the database
+- Patch notes can both be added and deleted here
+
+![screenshot of the admin page](./public/wireframes/admin.png)
