@@ -51,9 +51,22 @@ The Registration page is another of the four pages accessible without needing an
 
 ![screenshot of the home page](./public/wireframes/register.png)
 
-The User page where the user can view their profile information
+The User page is where the user can view their profile information
 - The user can change their profile picture here
 - The user can also "delete" their account here. (Deleting here really just flags the account to be deleted on the Admin's account table)
 - User will also be able to logout here
 
 ![screenshot of the home page](./public/wireframes/user.png)
+
+The Pre Purchase Download page is where the user can purchase the game
+- The user can click purchase to be taken to strip to buy the game
+- After making the purchase the user will see the Post Purchase Download page
+- The game trailer will be here.
+
+![screenshot of the home page](./public/wireframes/preDownload.png)
+
+The Post Purchase Download page is where the user can purchase the game
+- The user can click either of the download buttons to download the game, one for Windows and one for MacOS.
+- The game trailer will be here as well.
+
+![screenshot of the home page](./public/wireframes/postDownload.png)
