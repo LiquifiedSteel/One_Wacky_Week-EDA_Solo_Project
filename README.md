@@ -24,9 +24,15 @@ The first image here is how the Navbar looks on desktop, the second it how it lo
 
 The Home/Landing page is the first page that a user sees
 - The game's patch notes are displayed on the page from most recent to oldest.
-- Some game art is to be displayed above the patch notes
+- Some game art is to be displayed above the patch notes.
 - The creator's socials are displayed here.
 
 ![screenshot of the home page](./public/wireframes/home.png)
 
+The About page one of the four pages accessible without needing an account
+- Information about the creator and the game are found on this page.
+- Some different game art is to be here as the background of the page.
+- A few easter eggs are to be hidden here.
+
+![screenshot of the home page](./public/wireframes/about.png)
 
