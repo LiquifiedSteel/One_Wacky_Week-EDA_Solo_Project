@@ -10,7 +10,7 @@ If you want to create a copy of this code and get it working on your computer, y
 - 'VITE_CLOUDINARY_NAME'
 - 'VITE_CLOUDINARY_UPLOAD_PRESET'
 
-You will also need to setup a database called 'alex' as well as copy, paste and run the code in the database.sql file into your database.
+You will also need to setup a database called 'alex' or you can changeit to something you want by going to `/server/module/pool.js as well as copy, paste and run the code in the database.sql file into your database.
 
 ## Description
 
