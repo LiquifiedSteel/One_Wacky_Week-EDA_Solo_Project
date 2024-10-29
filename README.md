@@ -51,9 +51,9 @@ The Registration page is another of the four pages accessible without needing an
 
 ![screenshot of the home page](./public/wireframes/register.png)
 
-The User page is another of the four pages accessible without needing an account
-- Here is where a user creates a new account
-- Recovery questions will be used for password recovery in the future (will be done before deployment)
-- Email verification will be refined in the future
+The User page where the user can view their profile information
+- The user can change their profile picture here
+- The user can also "delete" their account here. (Deleting here really just flags the account to be deleted on the Admin's account table)
+- User will also be able to logout here
 
 ![screenshot of the home page](./public/wireframes/user.png)
