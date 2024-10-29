@@ -1,4 +1,4 @@
-# One Wacky Week Download Site
+# One Wacky Week Sales and Information Site
 
 A website that will be used in the future for selling the video game I am going to make.
 
