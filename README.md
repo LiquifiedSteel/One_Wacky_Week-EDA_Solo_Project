@@ -36,3 +36,8 @@ The About page is one of the four pages accessible without needing an account
 
 ![screenshot of the home page](./public/wireframes/about.png)
 
+The Login page is another of the four pages accessible without needing an account
+- The user logs into their already made account here
+- The user can switch to the registration page to create a new account
+
+![screenshot of the home page](./public/wireframes/login.png)
