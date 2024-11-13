@@ -9,7 +9,7 @@ const router = express.Router();
  * This GET request will grab all of the patch notes from the Patches table, will be sent straight to the Home page to be displayed
  */
 router.get('/', (req, res) => {
-    pool.query(`SELECT * FROM "Patches" ORDER BY "date_posted" DESC;`)
+    pool.query(`SELECT * FROM "Patches" ORDER BY "id" DESC;`)
         .then((response) => res.send(response.rows).status(200))
         .catch((err) => {
             console.error("Failed to retrieve Patch Notes: ", err);

@@ -5,7 +5,7 @@ const {
 const pool = require('../modules/pool');
 const router = express.Router();
 const stripe = require('stripe')(process.env.SERVER_SESSION_SECRET);
-const YOUR_DOMAIN = 'http://localhost:5173';
+const YOUR_DOMAIN = 'https://onewackyweekofficial.fly.dev';
 
 // Here we check if the current user has puchased the game
 router.get('/check-status/:email', rejectUnauthenticated, (req, res) => {
